@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
         private float m_CurrentFuelAmount;
         private eFuelType m_Fuel;
 
-        private enum eFuelType
+        internal enum eFuelType
         {
             Octan95,
             Octan96,

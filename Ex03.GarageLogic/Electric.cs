@@ -9,6 +9,12 @@ namespace Ex03.GarageLogic
         private readonly float m_MaxBatteryTime;
         private float m_RemainingBatteryTime;
 
+        public Electric(float i_MaxBatteryTime, float i_RemainingBatteryTime)
+        {
+            m_MaxBatteryTime = i_MaxBatteryTime;
+            m_RemainingBatteryTime = i_RemainingBatteryTime;
+        }
+
         public void ChargeBattery(float i_HoursToAddToTheBattery)
         {
             if (m_RemainingBatteryTime + i_HoursToAddToTheBattery <= m_MaxBatteryTime)

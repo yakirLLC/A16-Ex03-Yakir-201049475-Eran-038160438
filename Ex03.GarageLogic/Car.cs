@@ -6,10 +6,10 @@ namespace Ex03.GarageLogic
 {
     public class Car : Vehicle
     {
+        private readonly eDoors m_NumOfDoors;
         private eColor m_Color;
-        private eDoors m_NumOfDoors;
 
-        private enum eColor
+        internal enum eColor
         {
             Red,
             Blue,
@@ -17,12 +17,26 @@ namespace Ex03.GarageLogic
             White
         }
 
-        private enum eDoors
+        internal enum eDoors
         {
             Two = 2,
             Three,
             Four,
             Five
+        }
+
+        public Car(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels, eDoors i_NumOfDoors, eColor i_Color)
+            : base(i_ModelName, i_Id, i_EnergyLeft, i_Wheels)
+        {
+            if (i_Wheels.Count == 4)
+            {
+                m_NumOfDoors = i_NumOfDoors;
+                m_Color = i_Color;
+            }
+            else
+            {
+                throw new ValueOutOfRangeException(new Exception(), 4, 4);
+            }
         }
     }
 }
