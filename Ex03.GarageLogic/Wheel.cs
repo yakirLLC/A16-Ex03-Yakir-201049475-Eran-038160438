@@ -8,10 +8,24 @@ namespace Ex03.GarageLogic
     {
         private string m_Manufacturer;
         private float m_CurrentAirPressure;
-        private float m_MaxAirPressure;
+        private readonly float m_MaxAirPressure;
 
-        public void Inflate()
+        public void Inflate(float i_AirToInflate)
         {
+            try
+            {
+                if (m_CurrentAirPressure + i_AirToInflate <= m_MaxAirPressure)
+                {
+                    m_CurrentAirPressure += i_AirToInflate;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }
