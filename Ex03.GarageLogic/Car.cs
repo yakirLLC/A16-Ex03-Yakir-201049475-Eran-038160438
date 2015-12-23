@@ -8,6 +8,7 @@ namespace Ex03.GarageLogic
     {
         private eColor m_Color;
         private eDoors m_NumOfDoors;
+
         private enum eColor
         {
             Red,

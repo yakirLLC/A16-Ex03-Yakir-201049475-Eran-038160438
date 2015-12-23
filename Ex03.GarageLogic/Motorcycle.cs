@@ -8,6 +8,7 @@ namespace Ex03.GarageLogic
     {
         private int m_EngineCapacity;
         private eLicenseType m_LicenseType;
+
         private enum eLicenseType
         {
             A,

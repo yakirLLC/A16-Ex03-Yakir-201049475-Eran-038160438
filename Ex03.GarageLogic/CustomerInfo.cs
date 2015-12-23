@@ -7,8 +7,9 @@ namespace Ex03.GarageLogic
     public class CustomerInfo
     {
         private string m_Owner;
-        string m_Phone;
-        eCarStatusInGarage m_Status;
+        private string m_Phone;
+        private eCarStatusInGarage m_Status = eCarStatusInGarage.InWork;
+
         private enum eCarStatusInGarage
         {
             InWork,

@@ -6,8 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class Electric
     {
-        private float m_RemainingBatteryTime;
         private readonly float m_MaxBatteryTime;
+        private float m_RemainingBatteryTime;
 
         public void ChargeBattery(float i_HoursToAddToTheBattery)
         {
