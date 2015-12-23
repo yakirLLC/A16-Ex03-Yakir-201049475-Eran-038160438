@@ -1,7 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex03.GarageLogic", "Ex03.GarageLogic\Ex03.GarageLogic.csproj", "{12EFAB9C-8B3B-422E-891B-D579615C94D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex03.ConsoleUI", "Ex03.ConsoleUI\Ex03.ConsoleUI.csproj", "{9C7324D2-542A-45E6-BE1E-844C81DF3B94}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12EFAB9C-8B3B-422E-891B-D579615C94D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12EFAB9C-8B3B-422E-891B-D579615C94D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12EFAB9C-8B3B-422E-891B-D579615C94D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12EFAB9C-8B3B-422E-891B-D579615C94D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C7324D2-542A-45E6-BE1E-844C81DF3B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C7324D2-542A-45E6-BE1E-844C81DF3B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C7324D2-542A-45E6-BE1E-844C81DF3B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C7324D2-542A-45E6-BE1E-844C81DF3B94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
