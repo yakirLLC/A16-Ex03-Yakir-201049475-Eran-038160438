@@ -6,25 +6,19 @@ namespace Ex03.GarageLogic
 {
     public class Wheel
     {
-        private string m_Manufacturer;
+        private readonly string m_Manufacturer;
         private float m_CurrentAirPressure;
         private readonly float m_MaxAirPressure;
 
         public void Inflate(float i_AirToInflate)
         {
-            try
+            if (m_CurrentAirPressure + i_AirToInflate <= m_MaxAirPressure)
             {
-                if (m_CurrentAirPressure + i_AirToInflate <= m_MaxAirPressure)
-                {
-                    m_CurrentAirPressure += i_AirToInflate;
-                }
-                else
-                {
-                    throw;
-                }
+                m_CurrentAirPressure += i_AirToInflate;
             }
-            catch
+            else
             {
+                throw new ValueOutOfRangeException(new Exception(), m_MaxAirPressure, m_CurrentAirPressure);
             }
         }
     }
