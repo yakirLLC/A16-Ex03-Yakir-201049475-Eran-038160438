@@ -6,8 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class Motorcycle : Vehicle
     {
-        private readonly int m_EngineCapacity;
-        private readonly eLicenseType m_LicenseType;
+        private readonly int r_EngineCapacity;
+        private readonly eLicenseType r_LicenseType;
 
         internal enum eLicenseType
         {
@@ -22,8 +22,8 @@ namespace Ex03.GarageLogic
         {
             if (i_Wheels.Count == 2 || i_Wheels.Count == 3)
             {
-                m_EngineCapacity = i_EngineCapacity;
-                m_LicenseType = i_LicenseType;
+                r_EngineCapacity = i_EngineCapacity;
+                r_LicenseType = i_LicenseType;
             }
             else
             {

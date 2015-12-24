@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public class Car : Vehicle
     {
-        private readonly eDoors m_NumOfDoors;
+        private readonly eDoors r_NumOfDoors;
         private eColor m_Color;
 
         internal enum eColor
@@ -30,7 +30,7 @@ namespace Ex03.GarageLogic
         {
             if (i_Wheels.Count == 4)
             {
-                m_NumOfDoors = i_NumOfDoors;
+                r_NumOfDoors = i_NumOfDoors;
                 m_Color = i_Color;
             }
             else

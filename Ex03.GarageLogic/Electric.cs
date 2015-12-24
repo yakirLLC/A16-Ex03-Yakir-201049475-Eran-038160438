@@ -6,24 +6,24 @@ namespace Ex03.GarageLogic
 {
     public class Electric
     {
-        private readonly float m_MaxBatteryTime;
+        private readonly float r_MaxBatteryTime;
         private float m_RemainingBatteryTime;
 
         public Electric(float i_MaxBatteryTime, float i_RemainingBatteryTime)
         {
-            m_MaxBatteryTime = i_MaxBatteryTime;
+            r_MaxBatteryTime = i_MaxBatteryTime;
             m_RemainingBatteryTime = i_RemainingBatteryTime;
         }
 
         public void ChargeBattery(float i_HoursToAddToTheBattery)
         {
-            if (m_RemainingBatteryTime + i_HoursToAddToTheBattery <= m_MaxBatteryTime)
+            if (m_RemainingBatteryTime + i_HoursToAddToTheBattery <= r_MaxBatteryTime)
             {
                 m_RemainingBatteryTime += i_HoursToAddToTheBattery;
             }
             else
             {
-                throw new ValueOutOfRangeException(new Exception(), m_MaxBatteryTime, m_RemainingBatteryTime);
+                throw new ValueOutOfRangeException(new Exception(), r_MaxBatteryTime, m_RemainingBatteryTime);
             }
         }
     }

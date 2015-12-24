@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public class Fuel
     {
-        private readonly float m_MaxFuelAmount;
+        private readonly float r_MaxFuelAmount;
         private float m_CurrentFuelAmount;
         private eFuelType m_Fuel;
 
@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
 
         public Fuel(float i_MaxFuelAmount, eFuelType i_FuelType)
         {
-            m_CurrentFuelAmount = m_MaxFuelAmount = i_MaxFuelAmount;
+            m_CurrentFuelAmount = r_MaxFuelAmount = i_MaxFuelAmount;
             m_Fuel = i_FuelType;
         }
 
@@ -28,7 +28,7 @@ namespace Ex03.GarageLogic
         {
             if (i_FuelType.Equals(m_Fuel))
             {
-                if (m_CurrentFuelAmount + i_FuelToFill <= m_MaxFuelAmount)
+                if (m_CurrentFuelAmount + i_FuelToFill <= r_MaxFuelAmount)
                 {
                     m_CurrentFuelAmount += i_FuelToFill;
                 }
@@ -39,7 +39,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ValueOutOfRangeException(new Exception(), m_MaxFuelAmount, m_CurrentFuelAmount);
+                throw new ValueOutOfRangeException(new Exception(), r_MaxFuelAmount, m_CurrentFuelAmount);
             }
         }
     }
