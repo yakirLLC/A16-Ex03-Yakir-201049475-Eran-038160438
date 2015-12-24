@@ -18,31 +18,11 @@ namespace Ex03.GarageLogic
             FuelTrack
         }
 
-        public void AddVehicle(string i_VehicleId, CustomerInfo i_CustomerInfo, eVehicleType i_VehicleType)
+        public void AddVehicle(Vehicle i_VehicleToAdd, CustomerInfo i_CustomerInfo)
         {
             try
             {
-                Vehicle vehicle;
-
-                m_VehiclesInGarageById.Add(i_VehicleId, i_CustomerInfo);
-                //switch (i_VehicleType)
-                //{
-                //    case eVehicleType.FuelCar:
-                //        vehicle = new FuelCar();
-                //        break;
-                //    case eVehicleType.ElectricCar:
-                //        vehicle = new ElectricCar();
-                //        break;
-                //    case eVehicleType.FuelMotorcycle:
-                //        vehicle = new FuelMotorcycle();
-                //        break;
-                //    case eVehicleType.ElectricMotorcycle:
-                //        vehicle = new ElectricMotorcycle();
-                //        break;
-                //    case eVehicleType.FuelTrack:
-                //        vehicle = new FuelTrack();
-                //        break;
-                //}
+                m_VehiclesInGarageById.Add(i_VehicleToAdd.Id, i_CustomerInfo);
             }
             catch(ArgumentException aex)
             {
