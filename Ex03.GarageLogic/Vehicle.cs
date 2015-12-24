@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         private float m_EnergyLeft;
         private List<Wheel> m_Wheels;
 
-        public Vehicle(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels)
+        protected Vehicle(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels)
         {
             r_ModelName = i_ModelName;
             r_Id = i_Id;

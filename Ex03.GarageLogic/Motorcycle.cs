@@ -17,7 +17,7 @@ namespace Ex03.GarageLogic
             C
         }
 
-        public Motorcycle(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels, int i_EngineCapacity, eLicenseType i_LicenseType)
+        protected Motorcycle(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels, int i_EngineCapacity, eLicenseType i_LicenseType)
             : base(i_ModelName, i_Id, i_EnergyLeft, i_Wheels)
         {
             if (i_Wheels.Count == 2 || i_Wheels.Count == 3)

@@ -25,7 +25,7 @@ namespace Ex03.GarageLogic
             Five
         }
 
-        public Car(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels, eDoors i_NumOfDoors, eColor i_Color)
+        protected Car(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels, eDoors i_NumOfDoors, eColor i_Color)
             : base(i_ModelName, i_Id, i_EnergyLeft, i_Wheels)
         {
             if (i_Wheels.Count == 4)
