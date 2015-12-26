@@ -1,0 +1,5 @@
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.GarageLogic\obj\Debug\Ex03.GarageLogic.csprojResolveAssemblyReference.cache
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.GarageLogic\bin\Debug\Ex03.GarageLogic.dll
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.GarageLogic\bin\Debug\Ex03.GarageLogic.pdb
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.GarageLogic\obj\Debug\Ex03.GarageLogic.dll
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.GarageLogic\obj\Debug\Ex03.GarageLogic.pdb

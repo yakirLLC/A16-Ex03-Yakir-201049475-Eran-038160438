@@ -9,9 +9,9 @@ namespace Ex03.GarageLogic
         private readonly int r_EngineCapacity;
         private readonly eLicenseType r_LicenseType;
 
-        internal enum eLicenseType
+        public enum eLicenseType
         {
-            A,
+            A = 1,
             A1,
             A4,
             C
@@ -20,15 +20,26 @@ namespace Ex03.GarageLogic
         protected Motorcycle(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels, int i_EngineCapacity, eLicenseType i_LicenseType)
             : base(i_ModelName, i_Id, i_EnergyLeft, i_Wheels)
         {
-            if (i_Wheels.Count == 2 || i_Wheels.Count == 3)
+            i_Wheels = new List<Wheel>(2);
+            foreach (Wheel wheel in i_Wheels)
             {
-                r_EngineCapacity = i_EngineCapacity;
-                r_LicenseType = i_LicenseType;
+                wheel.MaxAirPressure = 32;
             }
-            else
-            {
-                throw new ValueOutOfRangeException(new Exception(), 3, 2);
-            }
+
+            r_EngineCapacity = i_EngineCapacity;
+            r_LicenseType = i_LicenseType;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder details = new StringBuilder();
+
+            details.Append(base.ToString());
+            details.Append(string.Format(@"Engine Capacity: {0}
+                                         License Type: {1}
+                                         ", r_EngineCapacity, (eLicenseType)r_LicenseType));
+
+            return details.ToString();
         }
     }
 }

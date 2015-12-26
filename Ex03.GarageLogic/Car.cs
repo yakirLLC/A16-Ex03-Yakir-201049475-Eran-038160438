@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
         private readonly eDoors r_NumOfDoors;
         private eColor m_Color;
 
-        internal enum eColor
+        public enum eColor
         {
             Red,
             Blue,
@@ -17,7 +17,7 @@ namespace Ex03.GarageLogic
             White
         }
 
-        internal enum eDoors
+        public enum eDoors
         {
             Two = 2,
             Three,
@@ -28,15 +28,26 @@ namespace Ex03.GarageLogic
         protected Car(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels, eDoors i_NumOfDoors, eColor i_Color)
             : base(i_ModelName, i_Id, i_EnergyLeft, i_Wheels)
         {
-            if (i_Wheels.Count == 4)
+            i_Wheels = new List<Wheel>(4);
+            foreach (Wheel wheel in i_Wheels)
             {
-                r_NumOfDoors = i_NumOfDoors;
-                m_Color = i_Color;
+                wheel.MaxAirPressure = 29;
             }
-            else
-            {
-                throw new ValueOutOfRangeException(new Exception(), 4, 4);
-            }
+
+            r_NumOfDoors = i_NumOfDoors;
+            m_Color = i_Color;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder details = new StringBuilder();
+
+            details.Append(base.ToString());
+            details.Append(string.Format(@"Amount of doors: {0}
+                                         Color: {1}
+                                         ", (eDoors)r_NumOfDoors, (eColor)m_Color));
+
+            return details.ToString();
         }
     }
 }

@@ -40,6 +40,7 @@
     <Compile Include="Electric.cs" />
     <Compile Include="ElectricCar.cs" />
     <Compile Include="ElectricMotorcycle.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="Fuel.cs" />
     <Compile Include="FuelCar.cs" />
     <Compile Include="FuelMotorcycle.cs" />

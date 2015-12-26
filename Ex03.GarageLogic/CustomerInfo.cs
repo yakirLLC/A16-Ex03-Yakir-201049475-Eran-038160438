@@ -16,11 +16,37 @@ namespace Ex03.GarageLogic
             m_Phone = i_Phone;
         }
 
-        internal enum eCarStatusInGarage
+        public enum eCarStatusInGarage
         {
             InWork,
             Fixed,
             Paid
+        }
+
+        public string OwnerName
+        {
+            get
+            {
+                return m_Owner;
+            }
+
+            set
+            {
+                m_Owner = value;
+            }
+        }
+
+        public string Phone
+        {
+            get
+            {
+                return m_Phone;
+            }
+
+            set
+            {
+                m_Phone = value;
+            }
         }
 
         public eCarStatusInGarage Status

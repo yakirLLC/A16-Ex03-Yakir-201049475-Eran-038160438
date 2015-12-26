@@ -4,13 +4,11 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class Fuel
+    public class Fuel : Engine
     {
-        private readonly float r_MaxFuelAmount;
-        private float m_CurrentFuelAmount;
-        private eFuelType m_Fuel;
+        private readonly eFuelType r_Fuel;
 
-        internal enum eFuelType
+        public enum eFuelType
         {
             Octan95,
             Octan96,
@@ -18,19 +16,27 @@ namespace Ex03.GarageLogic
             Soler
         }
 
-        public Fuel(float i_MaxFuelAmount, eFuelType i_FuelType)
+        public eFuelType FuelType
         {
-            m_CurrentFuelAmount = r_MaxFuelAmount = i_MaxFuelAmount;
-            m_Fuel = i_FuelType;
+            get
+            {
+                return r_Fuel;
+            }
+        }
+
+        public Fuel(float i_MaxFuelAmount, eFuelType i_FuelType)
+            :base(i_MaxFuelAmount)
+        {
+            r_Fuel = i_FuelType;
         }
 
         public void FillTank(float i_FuelToFill, eFuelType i_FuelType)
         {
-            if (i_FuelType.Equals(m_Fuel))
+            if (i_FuelType.Equals(r_Fuel))
             {
-                if (m_CurrentFuelAmount + i_FuelToFill <= r_MaxFuelAmount)
+                if (this.CurrentEnergy + i_FuelToFill <= this.MaxEnergy)
                 {
-                    m_CurrentFuelAmount += i_FuelToFill;
+                    this.CurrentEnergy += i_FuelToFill;
                 }
                 else
                 {
@@ -39,8 +45,19 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ValueOutOfRangeException(new Exception(), r_MaxFuelAmount, m_CurrentFuelAmount);
+                throw new ValueOutOfRangeException(new Exception(), this.MaxEnergy, this.CurrentEnergy);
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder details = new StringBuilder();
+
+            details.Append(base.ToString());
+            details.Append(string.Format(@"Fuel Type: {0}
+                                         ", (eFuelType)r_Fuel));
+
+            return details.ToString();
         }
     }
 }

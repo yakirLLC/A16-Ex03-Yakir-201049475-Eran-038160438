@@ -4,27 +4,36 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class Electric
+    public class Electric : Engine
     {
-        private readonly float r_MaxBatteryTime;
-        private float m_RemainingBatteryTime;
-
         public Electric(float i_MaxBatteryTime, float i_RemainingBatteryTime)
+            :base(i_MaxBatteryTime)
         {
-            r_MaxBatteryTime = i_MaxBatteryTime;
-            m_RemainingBatteryTime = i_RemainingBatteryTime;
+            if (i_RemainingBatteryTime <= 2.8f)
+            {
+                this.CurrentEnergy = i_RemainingBatteryTime;
+            }
+            else
+            {
+                throw new ValueOutOfRangeException(new Exception(), 2.8f, 0.1f);
+            }
         }
 
         public void ChargeBattery(float i_HoursToAddToTheBattery)
         {
-            if (m_RemainingBatteryTime + i_HoursToAddToTheBattery <= r_MaxBatteryTime)
+            if (this.CurrentEnergy + i_HoursToAddToTheBattery <= this.MaxEnergy)
             {
-                m_RemainingBatteryTime += i_HoursToAddToTheBattery;
+                this.CurrentEnergy += i_HoursToAddToTheBattery;
             }
             else
             {
-                throw new ValueOutOfRangeException(new Exception(), r_MaxBatteryTime, m_RemainingBatteryTime);
+                throw new ValueOutOfRangeException(new Exception(), this.MaxEnergy, this.CurrentEnergy);
             }
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }
