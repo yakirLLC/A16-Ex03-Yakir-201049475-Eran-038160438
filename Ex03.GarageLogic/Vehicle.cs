@@ -8,16 +8,23 @@ namespace Ex03.GarageLogic
     {
         private readonly string r_ModelName;
         private readonly string r_Id;
-        private float m_EnergyLeft;
+        private float m_PercentageEnergyLeft;
         private List<Wheel> m_Wheels;
-        private Engine m_Engine;
+        private abstract Engine m_Engine;
 
-        protected Vehicle(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels)
+        protected Vehicle(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, ref List<Wheel> i_Wheels)
         {
             r_ModelName = i_ModelName;
             r_Id = i_Id;
-            m_EnergyLeft = i_EnergyLeft;
             m_Wheels = i_Wheels;
+            if (i_PercentageEnergyLeft <= 100)
+            {
+                m_PercentageEnergyLeft = i_PercentageEnergyLeft;
+            }
+            else
+            {
+                throw new ValueOutOfRangeException(new Exception(), 100f, 1f);
+            }
         }
 
         public Engine EngineType
@@ -86,7 +93,6 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             int i = 1;
-            float percentageEnergyLeft;
             string details;
             StringBuilder wheelsDetails = new StringBuilder();
 
@@ -95,14 +101,13 @@ namespace Ex03.GarageLogic
                 wheelsDetails.Append(string.Format("Wheel #{0}:\n\tManufacturer: {1}\n\tMaximum Air Pressure: {2}\n\tCurrent Air Pressure: {3}\n", i++, wheel.Manufacturer, wheel.MaxAirPressure, wheel.CurrentAirPressure));
             }
 
-            percentageEnergyLeft = m_Engine.CurrentEnergy * 100 / m_Engine.MaxEnergy;
             details = string.Format(@"ID: {0}
                                     Model Name: {1}
                                     Energy left: {2}
                                     {3}
                                     Maximum Energy: {4}
                                     % Energy Left: {5}%
-                                    ", r_Id, r_ModelName, m_EnergyLeft, wheelsDetails, m_Engine.MaxEnergy, percentageEnergyLeft);
+                                    ", r_Id, r_ModelName, m_PercentageEnergyLeft, wheelsDetails, m_Engine.MaxEnergy, m_PercentageEnergyLeft);
 
             return details;
         }

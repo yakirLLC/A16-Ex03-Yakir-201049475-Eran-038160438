@@ -7,6 +7,8 @@ namespace Ex03.ConsoleUI
 {
     public class Program
     {
+        private GarageFunctionality m_GarageFunctionality = new GarageFunctionality();
+
         public enum eNumOfWheels
         {
             Motorcycle = 2,
@@ -14,15 +16,17 @@ namespace Ex03.ConsoleUI
             Track = 12
         }
 
-        public Dictionary<string, CustomerInfo> AddVehiclesToGarage()
+        public void AddVehiclesToGarage()
         {
             int vehicleIndex, engineCapacity;
-            string modelName, id;
-            float percentageEnergyLeft, maxCarringWeight;
+            string modelName, id, ownerName, ownerPhone;
+            float percentageEnergyLeft, maxCarringWeight, currentEnergyLeft;
             bool stopAdddingVehicles = false, isCarringDangerousMaterials;
             Motorcycle.eLicenseType licenseType;
             Car.eDoors doors;
             Car.eColor color;
+            List<Wheel> wheels = new List<Wheel>();
+            CustomerInfo ci;
             VehiclesCreator vc = new VehiclesCreator();
 
             while (!stopAdddingVehicles)
@@ -34,19 +38,31 @@ namespace Ex03.ConsoleUI
                 }
 
                 vehicleIndex = IntParseInput();
+                GetCustomerInfo(out ownerName, out ownerPhone);
+                ci = new CustomerInfo(ownerName, ownerPhone);
                 GetVehicleDetails(out id, out modelName, out percentageEnergyLeft);
                 switch (vehicleIndex)
                 {
                     case 1:
+                        GetMotorcycleProperties(out engineCapacity, out licenseType);
+                        GetCurrentEnergy(out currentEnergyLeft, Engine.eEngineType.Fuel);
+                        m_GarageFunctionality.AddVehicle(vc.CreateFuelMotorcycle(modelName, id, percentageEnergyLeft, ref wheels, engineCapacity, licenseType, currentEnergyLeft), ci);
+                        break;
                     case 2: 
                         GetMotorcycleProperties(out engineCapacity, out licenseType);
+                        GetCurrentEnergy(out currentEnergyLeft, Engine.eEngineType.Electric);
                         break;
                     case 3:
+                        GetCarProperties(out color, out doors);
+                        GetCurrentEnergy(out currentEnergyLeft, Engine.eEngineType.Fuel);
+                        break;
                     case 4:
                         GetCarProperties(out color, out doors);
+                        GetCurrentEnergy(out currentEnergyLeft, Engine.eEngineType.Electric);
                         break;
                     case 5:
                         GetTrackProperties(out maxCarringWeight, out isCarringDangerousMaterials);
+                        GetCurrentEnergy(out currentEnergyLeft, Engine.eEngineType.Fuel);
                         break;
                 }
                 
@@ -147,6 +163,28 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Please enter yes or no for carring dangerous materials:");
             dangerousMaterials = Console.ReadLine();
             o_CarriesDangerousMaterials = dangerousMaterials.Equals("yes");
+        }
+
+        public void GetCustomerInfo(out string o_OwnerName, out string o_OwnerPhone)
+        {
+            Console.WriteLine("Please Enter the Vehicle's owner name:");
+            o_OwnerName = Console.ReadLine();
+            Console.WriteLine("Please Enter the Vehicle's owner phone number:");
+            o_OwnerPhone = Console.ReadLine();
+        }
+
+        public void GetCurrentEnergy(out float o_CurrentEnergy, Engine.eEngineType i_EnergyType)
+        {
+            if (i_EnergyType.Equals(Engine.eEngineType.Fuel))
+            {
+                Console.WriteLine("Please Enter current fuel amount in Liters:");
+            }
+            else
+            {
+                Console.WriteLine("Please Enter current Battery time left in Hours:");
+            }
+
+            o_CurrentEnergy = FloatParseInput();
         }
     }
 }

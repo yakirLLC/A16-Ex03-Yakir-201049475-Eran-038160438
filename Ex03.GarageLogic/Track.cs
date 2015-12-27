@@ -9,8 +9,8 @@ namespace Ex03.GarageLogic
         private readonly float r_MaxCarringWeight;
         private bool m_CarriesDangerousMaterials;
 
-        protected Track(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels, float i_MaxCarringWeight, bool i_CarriesDangerousMaterials)
-            : base(i_ModelName, i_Id, i_EnergyLeft, i_Wheels)
+        protected Track(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels, float i_MaxCarringWeight, bool i_CarriesDangerousMaterials)
+            : base(i_ModelName, i_Id, i_PercentageEnergyLeft, i_Wheels)
         {
             i_Wheels = new List<Wheel>(12);
             r_MaxCarringWeight = i_MaxCarringWeight;

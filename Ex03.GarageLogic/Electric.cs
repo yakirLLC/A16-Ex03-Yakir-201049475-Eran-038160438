@@ -6,18 +6,9 @@ namespace Ex03.GarageLogic
 {
     public class Electric : Engine
     {
-        public Electric(float i_MaxBatteryTime, float i_RemainingBatteryTime)
-            :base(i_MaxBatteryTime)
-        {
-            if (i_RemainingBatteryTime <= 2.8f)
-            {
-                this.CurrentEnergy = i_RemainingBatteryTime;
-            }
-            else
-            {
-                throw new ValueOutOfRangeException(new Exception(), 2.8f, 0.1f);
-            }
-        }
+        public Electric(float i_MaxBatteryTime, float i_CurrentEnergy)
+            :base(i_MaxBatteryTime, i_CurrentEnergy)
+        { }
 
         public void ChargeBattery(float i_HoursToAddToTheBattery)
         {

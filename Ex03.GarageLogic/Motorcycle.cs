@@ -17,8 +17,8 @@ namespace Ex03.GarageLogic
             C
         }
 
-        protected Motorcycle(string i_ModelName, string i_Id, float i_EnergyLeft, List<Wheel> i_Wheels, int i_EngineCapacity, eLicenseType i_LicenseType)
-            : base(i_ModelName, i_Id, i_EnergyLeft, i_Wheels)
+        protected Motorcycle(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, ref List<Wheel> i_Wheels, int i_EngineCapacity, eLicenseType i_LicenseType)
+            : base(i_ModelName, i_Id, i_PercentageEnergyLeft, ref i_Wheels)
         {
             i_Wheels = new List<Wheel>(2);
             foreach (Wheel wheel in i_Wheels)

@@ -24,8 +24,8 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public Fuel(float i_MaxFuelAmount, eFuelType i_FuelType)
-            :base(i_MaxFuelAmount)
+        public Fuel(float i_MaxFuelAmount, float i_CurrentEnergy, eFuelType i_FuelType)
+            :base(i_MaxFuelAmount, i_CurrentEnergy)
         {
             r_Fuel = i_FuelType;
         }
