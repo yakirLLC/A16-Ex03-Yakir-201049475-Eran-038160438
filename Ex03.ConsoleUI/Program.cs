@@ -9,23 +9,17 @@ namespace Ex03.ConsoleUI
     {
         private GarageFunctionality m_GarageFunctionality = new GarageFunctionality();
 
-        public enum eNumOfWheels
-        {
-            Motorcycle = 2,
-            Car = 4,
-            Track = 12
-        }
-
         public void AddVehiclesToGarage()
         {
-            int vehicleIndex, engineCapacity;
+            int engineCapacity;
             string modelName, id, ownerName, ownerPhone;
             float percentageEnergyLeft, maxCarringWeight, currentEnergyLeft;
             bool stopAdddingVehicles = false, isCarringDangerousMaterials;
+            GarageFunctionality.eVehicleType vehicleIndex;
             Motorcycle.eLicenseType licenseType;
             Car.eDoors doors;
             Car.eColor color;
-            List<Wheel> wheels = new List<Wheel>();
+            List<Wheel> wheels;
             CustomerInfo ci;
             VehiclesCreator vc = new VehiclesCreator();
 
@@ -37,35 +31,80 @@ namespace Ex03.ConsoleUI
                     Console.WriteLine("{0}. {1}", (int)vehicleType, (VehiclesCreator.eVehicleType)vehicleType);
                 }
 
-                vehicleIndex = IntParseInput();
+                vehicleIndex = (GarageFunctionality.eVehicleType)IntParseInput();
                 GetCustomerInfo(out ownerName, out ownerPhone);
                 ci = new CustomerInfo(ownerName, ownerPhone);
                 GetVehicleDetails(out id, out modelName, out percentageEnergyLeft);
                 switch (vehicleIndex)
                 {
-                    case 1:
+                    case GarageFunctionality.eVehicleType.FuelMotorcycle:
+                        GetWheelsDeatils(out wheels, Vehicle.eNumOfWheels.Motorcycle);
                         GetMotorcycleProperties(out engineCapacity, out licenseType);
                         GetCurrentEnergy(out currentEnergyLeft, Engine.eEngineType.Fuel);
-                        m_GarageFunctionality.AddVehicle(vc.CreateFuelMotorcycle(modelName, id, percentageEnergyLeft, ref wheels, engineCapacity, licenseType, currentEnergyLeft), ci);
+                        try
+                        {
+                            m_GarageFunctionality.AddVehicle(vc.CreateFuelMotorcycle(modelName, id, percentageEnergyLeft, wheels, engineCapacity, licenseType, currentEnergyLeft), ci);
+                        }
+                        catch(ArgumentException)
+                        {
+                            Console.WriteLine("Vehicle already exists, status is set to In Work.");
+                        }
                         break;
-                    case 2: 
+                    case GarageFunctionality.eVehicleType.ElectricMotorcycle:
+                        GetWheelsDeatils(out wheels, Vehicle.eNumOfWheels.Motorcycle);
                         GetMotorcycleProperties(out engineCapacity, out licenseType);
                         GetCurrentEnergy(out currentEnergyLeft, Engine.eEngineType.Electric);
+                        try
+                        {
+                            m_GarageFunctionality.AddVehicle(vc.CreateElectricMotorcycle(modelName, id, percentageEnergyLeft, wheels, engineCapacity, licenseType, currentEnergyLeft), ci);
+                        }
+                        catch (ArgumentException)
+                        {
+                            Console.WriteLine("Vehicle already exists, status is set to In Work.");
+                        }
                         break;
-                    case 3:
+                    case GarageFunctionality.eVehicleType.FuelCar:
+                        GetWheelsDeatils(out wheels, Vehicle.eNumOfWheels.Car);
                         GetCarProperties(out color, out doors);
                         GetCurrentEnergy(out currentEnergyLeft, Engine.eEngineType.Fuel);
+                        try
+                        {
+                            m_GarageFunctionality.AddVehicle(vc.CreateFuelCar(modelName, id, percentageEnergyLeft, wheels, doors, color, currentEnergyLeft), ci);
+                        }
+                        catch (ArgumentException)
+                        {
+                            Console.WriteLine("Vehicle already exists, status is set to In Work.");
+                        }
                         break;
-                    case 4:
+                    case GarageFunctionality.eVehicleType.ElectricCar:
+                        GetWheelsDeatils(out wheels, Vehicle.eNumOfWheels.Car);
                         GetCarProperties(out color, out doors);
                         GetCurrentEnergy(out currentEnergyLeft, Engine.eEngineType.Electric);
+                        try
+                        {
+                            m_GarageFunctionality.AddVehicle(vc.CreateElectricCar(modelName, id, percentageEnergyLeft, wheels, doors, color, currentEnergyLeft), ci);
+                        }
+                        catch (ArgumentException)
+                        {
+                            Console.WriteLine("Vehicle already exists, status is set to In Work.");
+                        }
                         break;
-                    case 5:
+                    case GarageFunctionality.eVehicleType.FuelTrack:
+                        GetWheelsDeatils(out wheels, Vehicle.eNumOfWheels.Track);
                         GetTrackProperties(out maxCarringWeight, out isCarringDangerousMaterials);
                         GetCurrentEnergy(out currentEnergyLeft, Engine.eEngineType.Fuel);
+                        try
+                        {
+                            m_GarageFunctionality.AddVehicle(vc.CreateFuelTrack(modelName, id, percentageEnergyLeft, wheels, maxCarringWeight, isCarringDangerousMaterials, currentEnergyLeft), ci);
+                        }
+                        catch (ArgumentException)
+                        {
+                            Console.WriteLine("Vehicle already exists, status is set to In Work.");
+                        }
                         break;
                 }
-                
+                Console.WriteLine("Would you like to enter another vehicle(yes/no)?");
+                stopAdddingVehicles = !GetYesNoAnswer(Console.ReadLine());
             }
         }
 
@@ -123,6 +162,47 @@ namespace Ex03.ConsoleUI
             return input;
         }
 
+        public bool GetYesNoAnswer(string i_Answer)
+        {
+            while (!i_Answer.Equals("yes") && !i_Answer.Equals("no"))
+            {
+                Console.WriteLine("Please enter yes or no as an answer.");
+                i_Answer = Console.ReadLine();
+            }
+
+            return i_Answer.Equals("yes");
+        }
+
+        public void GetWheelsDeatils(out List<Wheel> o_Wheels, Vehicle.eNumOfWheels i_NumOfWheels)
+        {
+            string manufacturer;
+            float currentAirPressure, maxAirPressure =29;
+            Wheel wheel;
+
+            o_Wheels = new List<Wheel>();
+            Console.WriteLine("Please Enter wheels manufacturer:");
+            manufacturer = Console.ReadLine();
+            Console.WriteLine("Please Enter wheels current air pressure:");
+            currentAirPressure = FloatParseInput();
+            switch ((int)i_NumOfWheels)
+            {
+                case 2:
+                    maxAirPressure = 32;
+                    break;
+                case 4:
+                    maxAirPressure = 29;
+                    break;
+                case 12:
+                    maxAirPressure = 34;
+                    break;
+            }
+            for (int i = 0; i < (int)i_NumOfWheels; i++)
+            {
+                wheel = new Wheel(manufacturer, maxAirPressure, currentAirPressure);
+                o_Wheels.Add(wheel);
+            }
+        }
+
         public void GetMotorcycleProperties(out int o_EngineCapacity, out Motorcycle.eLicenseType o_LicenseType)
         {
             Console.WriteLine("Please Enter engine capacity:");
@@ -156,13 +236,10 @@ namespace Ex03.ConsoleUI
 
         public void GetTrackProperties(out float o_MaxCarringWeight, out bool o_CarriesDangerousMaterials)
         {
-            string dangerousMaterials;
-
             Console.WriteLine("Please Enter maximum carring weight:");
             o_MaxCarringWeight = FloatParseInput();
             Console.WriteLine("Please enter yes or no for carring dangerous materials:");
-            dangerousMaterials = Console.ReadLine();
-            o_CarriesDangerousMaterials = dangerousMaterials.Equals("yes");
+            o_CarriesDangerousMaterials = GetYesNoAnswer(Console.ReadLine());
         }
 
         public void GetCustomerInfo(out string o_OwnerName, out string o_OwnerPhone)
@@ -185,6 +262,70 @@ namespace Ex03.ConsoleUI
             }
 
             o_CurrentEnergy = FloatParseInput();
+        }
+
+        public void PrintVehicleStatusTypeMenu()
+        {
+            foreach (CustomerInfo.eCarStatusInGarage vehicleStatus in Enum.GetValues(typeof(CustomerInfo.eCarStatusInGarage)))
+            {
+                Console.WriteLine("{0}. {1}", (int)vehicleStatus, (CustomerInfo.eCarStatusInGarage)vehicleStatus);
+            }
+        }
+
+        public void ShowVehiclesInGarage()
+        {
+            bool isFilter;
+            LinkedList<string> idList = new LinkedList<string>();
+            CustomerInfo.eCarStatusInGarage status;
+
+            Console.WriteLine("Would you like to filter by vehicle status(yes/no)?");
+            isFilter = GetYesNoAnswer(Console.ReadLine());
+            if (isFilter)
+            {
+                Console.WriteLine("Choose Status:");
+                PrintVehicleStatusTypeMenu();
+                status = (CustomerInfo.eCarStatusInGarage)IntParseInput();
+                idList = m_GarageFunctionality.ReturnVehiclesId(status);
+            }
+            else
+            {
+                idList = m_GarageFunctionality.ReturnVehiclesId();
+            }
+
+            Console.WriteLine("Vehicles ID List:");
+            foreach (string id in idList)
+            {
+                Console.WriteLine(id);
+            }
+        }
+
+        public string GetVehicleId()
+        {
+            Console.WriteLine("Please Enter vehicle ID:");
+
+            return Console.ReadLine();
+        }
+
+        public void ChangeVehicleStatusInGarage()
+        {
+            string vehicleId;
+            CustomerInfo.eCarStatusInGarage status;
+
+            vehicleId = GetVehicleId();
+            Console.WriteLine("Please choose Status:");
+            PrintVehicleStatusTypeMenu();
+            status = (CustomerInfo.eCarStatusInGarage)IntParseInput();
+            m_GarageFunctionality.UpdateVehicleStatus(vehicleId, status);
+            Console.WriteLine(" Vehicle with ID {0} was set to {1}.", vehicleId, status.ToString());
+        }
+
+        public void InflateWheelsToMax()
+        {
+            string vehicleId;
+
+            vehicleId = GetVehicleId();
+            m_GarageFunctionality.InflateWheelsToMax(vehicleId);
+            Console.WriteLine(" All wheels were inflated to max in vehicle with ID of {0}.", vehicleId);
         }
     }
 }

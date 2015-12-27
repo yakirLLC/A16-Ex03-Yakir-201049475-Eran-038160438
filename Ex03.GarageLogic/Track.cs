@@ -12,7 +12,6 @@ namespace Ex03.GarageLogic
         protected Track(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels, float i_MaxCarringWeight, bool i_CarriesDangerousMaterials)
             : base(i_ModelName, i_Id, i_PercentageEnergyLeft, i_Wheels)
         {
-            i_Wheels = new List<Wheel>(12);
             r_MaxCarringWeight = i_MaxCarringWeight;
             m_CarriesDangerousMaterials = i_CarriesDangerousMaterials;
             foreach (Wheel wheel in i_Wheels)

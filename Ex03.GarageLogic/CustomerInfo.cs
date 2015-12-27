@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
 
         public enum eCarStatusInGarage
         {
-            InWork,
+            InWork = 1,
             Fixed,
             Paid
         }

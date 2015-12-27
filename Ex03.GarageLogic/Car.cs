@@ -25,8 +25,17 @@ namespace Ex03.GarageLogic
             Five
         }
 
+        public int MaxAirPressure
+        {
+            get
+            {
+                return k_MaxAirPressure;
+            }
+        }
+
+
         protected Car(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels, eDoors i_NumOfDoors, eColor i_Color)
-            : base(i_ModelName, i_Id, i_PercentageEnergyLeft, ref i_Wheels)
+            : base(i_ModelName, i_Id, i_PercentageEnergyLeft, i_Wheels)
         {
             i_Wheels = new List<Wheel>(4);
             foreach (Wheel wheel in i_Wheels)

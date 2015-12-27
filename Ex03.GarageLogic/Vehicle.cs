@@ -12,7 +12,14 @@ namespace Ex03.GarageLogic
         private List<Wheel> m_Wheels;
         private abstract Engine m_Engine;
 
-        protected Vehicle(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, ref List<Wheel> i_Wheels)
+        public enum eNumOfWheels
+        {
+            Motorcycle = 2,
+            Car = 4,
+            Track = 12
+        }
+
+        protected Vehicle(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels)
         {
             r_ModelName = i_ModelName;
             r_Id = i_Id;
@@ -24,6 +31,19 @@ namespace Ex03.GarageLogic
             else
             {
                 throw new ValueOutOfRangeException(new Exception(), 100f, 1f);
+            }
+        }
+
+        public List<Wheel> Wheels
+        {
+            get
+            {
+                return m_Wheels;
+            }
+
+            set
+            {
+                m_Wheels = value;
             }
         }
 

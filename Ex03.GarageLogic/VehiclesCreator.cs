@@ -25,9 +25,9 @@ namespace Ex03.GarageLogic
             return new  ElectricCar(i_ModelName, i_Id, i_PercentageEnergyLeft, i_Wheels, i_NumOfDoors, i_Color, i_RemainingBatteryTime);
         }
 
-        public FuelMotorcycle CreateFuelMotorcycle(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, ref List<Wheel> i_Wheels, int i_EngineCapacity, Motorcycle.eLicenseType i_LicenseType, float i_CurrentEnergy)
+        public FuelMotorcycle CreateFuelMotorcycle(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels, int i_EngineCapacity, Motorcycle.eLicenseType i_LicenseType, float i_CurrentEnergy)
         {
-            return new FuelMotorcycle(i_ModelName, i_Id, i_PercentageEnergyLeft, ref i_Wheels, i_EngineCapacity, i_LicenseType, i_CurrentEnergy);
+            return new FuelMotorcycle(i_ModelName, i_Id, i_PercentageEnergyLeft, i_Wheels, i_EngineCapacity, i_LicenseType, i_CurrentEnergy);
         }
 
         public ElectricMotorcycle CreateElectricMotorcycle(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels, int i_EngineCapacity, Motorcycle.eLicenseType i_LicenseType, float i_RemainingBatteryTime)

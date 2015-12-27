@@ -64,6 +64,21 @@ namespace Ex03.GarageLogic
             m_VehiclesInGarageById[i_Id].Status = i_NewVehicleStatus;
         }
 
+        public void InflateWheelsToMax(string i_Id)
+        {
+            foreach (Vehicle vehicle in m_Vehicles)
+            {
+                if (vehicle.Id.Equals(i_Id))
+                {
+                    foreach (Wheel wheel in vehicle.Wheels)
+                    {
+                        wheel.InflateToMax();
+                    }
+                    break;
+                }
+            }
+        }
+
         public void FillGas(string i_Id, Fuel.eFuelType i_FuelType, float i_FuelToFill)
         {
             foreach (Vehicle vehicle in m_Vehicles)

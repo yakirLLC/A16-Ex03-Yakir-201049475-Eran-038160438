@@ -8,8 +8,8 @@ namespace Ex03.GarageLogic
     {
         private Fuel m_FuelProperties;
 
-        public FuelMotorcycle(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, ref List<Wheel> i_Wheels, int i_EngineCapacity, eLicenseType i_LicenseType, float i_CurrentEnergy)
-            : base(i_ModelName, i_Id, i_PercentageEnergyLeft, ref i_Wheels, i_EngineCapacity, i_LicenseType)
+        public FuelMotorcycle(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels, int i_EngineCapacity, eLicenseType i_LicenseType, float i_CurrentEnergy)
+            : base(i_ModelName, i_Id, i_PercentageEnergyLeft, i_Wheels, i_EngineCapacity, i_LicenseType)
         {
             if (i_CurrentEnergy <= 6)
             {
