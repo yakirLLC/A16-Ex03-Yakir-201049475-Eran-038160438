@@ -9,15 +9,6 @@ namespace Ex03.GarageLogic
         private Dictionary<string, CustomerInfo> m_VehiclesInGarageById = new Dictionary<string, CustomerInfo>();
         private LinkedList<Vehicle> m_Vehicles = new LinkedList<Vehicle>();
 
-        public enum eVehicleType
-        {
-            FuelCar,
-            ElectricCar,
-            FuelMotorcycle,
-            ElectricMotorcycle,
-            FuelTrack
-        }
-
         public void AddVehicle(Vehicle i_VehicleToAdd, CustomerInfo i_CustomerInfo)
         {
             try
@@ -27,7 +18,7 @@ namespace Ex03.GarageLogic
             }
             catch(ArgumentException)
             {
-                i_CustomerInfo.Status = CustomerInfo.eCarStatusInGarage.InWork;
+                i_CustomerInfo.Status = CustomerInfo.eVehicleStatusInGarage.InWork;
                 throw new ArgumentException();
             }
         }
@@ -44,7 +35,7 @@ namespace Ex03.GarageLogic
             return returnedIdLinkedList;
         }
 
-        public LinkedList<string> ReturnVehiclesId(CustomerInfo.eCarStatusInGarage i_VehicleStatus)
+        public LinkedList<string> ReturnVehiclesId(CustomerInfo.eVehicleStatusInGarage i_VehicleStatus)
         {
             LinkedList<string> returnedIdLinkedList = new LinkedList<string>();
 
@@ -59,7 +50,7 @@ namespace Ex03.GarageLogic
             return returnedIdLinkedList;
         }
 
-        public void UpdateVehicleStatus(string i_Id, CustomerInfo.eCarStatusInGarage i_NewVehicleStatus)
+        public void UpdateVehicleStatus(string i_Id, CustomerInfo.eVehicleStatusInGarage i_NewVehicleStatus)
         {
             m_VehiclesInGarageById[i_Id].Status = i_NewVehicleStatus;
         }
@@ -74,6 +65,7 @@ namespace Ex03.GarageLogic
                     {
                         wheel.InflateToMax();
                     }
+
                     break;
                 }
             }
@@ -129,10 +121,8 @@ namespace Ex03.GarageLogic
             {
                 if (vehicle.Id.Equals(i_Id))
                 {
-                    customerDetails.Append(string.Format(@"Owner Name: {0}
-                                                         Phone: {1}
-                                                         Vehicle Status: {2}
-                                                         ", m_VehiclesInGarageById[i_Id].OwnerName, m_VehiclesInGarageById[i_Id].Phone, m_VehiclesInGarageById[i_Id].Status));
+                    customerDetails.AppendLine(string.Format("Full Details for vehicle with ID {0}:\n", i_Id));
+                    customerDetails.AppendLine(m_VehiclesInGarageById[i_Id].ToString());
                     customerDetails.Append(vehicle.ToString());
                     break;
                 }

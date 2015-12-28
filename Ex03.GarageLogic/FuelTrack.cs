@@ -8,22 +8,29 @@ namespace Ex03.GarageLogic
     {
         private Fuel m_FuelProperties;
 
-        public FuelTrack(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels, float i_MaxCarringWeight, bool i_CarriesDangerousMaterials, float i_CurrentEnergy)
-            : base(i_ModelName, i_Id, i_PercentageEnergyLeft, i_Wheels, i_MaxCarringWeight, i_CarriesDangerousMaterials)
+        public FuelTrack(string i_ModelName, string i_Id, List<Wheel> i_Wheels, float i_MaxCarringWeight, bool i_CarriesDangerousMaterials, float i_CurrentEnergy)
+            : base(i_ModelName, i_Id, i_Wheels, i_MaxCarringWeight, i_CarriesDangerousMaterials)
         {
-            if (i_CurrentEnergy <= 160)
+            int maxEnergy = 160;
+
+            if (i_CurrentEnergy <= maxEnergy)
             {
-                m_FuelProperties = new Fuel(160, i_CurrentEnergy, Fuel.eFuelType.Soler);
+                m_FuelProperties = new Fuel(maxEnergy, i_CurrentEnergy, Fuel.eFuelType.Soler);
             }
             else
             {
-                throw new ValueOutOfRangeException(new Exception(), 160f, 0.1f);
+                throw new ValueOutOfRangeException(new Exception(), maxEnergy, 0.1f);
             }
         }
 
         public override string ToString()
         {
-            return m_FuelProperties.ToString();
+            StringBuilder details = new StringBuilder();
+
+            details.AppendLine(base.ToString());
+            details.Append(m_FuelProperties.ToString());
+
+            return details.ToString();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
 
         public enum eFuelType
         {
-            Octan95,
+            Octan95 = 1,
             Octan96,
             Octan98,
             Soler
@@ -53,9 +53,8 @@ namespace Ex03.GarageLogic
         {
             StringBuilder details = new StringBuilder();
 
-            details.Append(base.ToString());
-            details.Append(string.Format(@"Fuel Type: {0}
-                                         ", (eFuelType)r_Fuel));
+            details.AppendLine(base.ToString());
+            details.AppendLine(string.Format("Fuel Type: {0}", ((eFuelType)r_Fuel)).ToString());
 
             return details.ToString();
         }

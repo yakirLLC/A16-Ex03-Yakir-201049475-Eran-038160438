@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public abstract class Engine
+    public class Engine
     {
         private readonly float r_MaxEnergy;
         private float m_CurrentEnergy;
@@ -46,10 +46,8 @@ namespace Ex03.GarageLogic
         {
             StringBuilder details = new StringBuilder();
 
-            details.Append(base.ToString());
-            details.Append(string.Format(@"Maximum Energy: {0}
-                                         Current Amount Of Energy: {1}
-                                         ", r_MaxEnergy, m_CurrentEnergy));
+            details.AppendLine(string.Format("Maximum Energy: {0}", r_MaxEnergy));
+            details.Append(string.Format("Current Amount Of Energy: {0}", m_CurrentEnergy));
 
             return details.ToString();
         }

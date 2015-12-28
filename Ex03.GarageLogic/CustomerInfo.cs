@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
     {
         private string m_Owner;
         private string m_Phone;
-        private eCarStatusInGarage m_Status = eCarStatusInGarage.InWork;
+        private eVehicleStatusInGarage m_Status = eVehicleStatusInGarage.InWork;
 
         public CustomerInfo(string i_Owner, string i_Phone)
         {
@@ -16,7 +16,7 @@ namespace Ex03.GarageLogic
             m_Phone = i_Phone;
         }
 
-        public enum eCarStatusInGarage
+        public enum eVehicleStatusInGarage
         {
             InWork = 1,
             Fixed,
@@ -49,7 +49,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public eCarStatusInGarage Status
+        public eVehicleStatusInGarage Status
         {
             get
             {
@@ -60,6 +60,17 @@ namespace Ex03.GarageLogic
             {
                 m_Status = value;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder details = new StringBuilder();
+
+            details.AppendLine(string.Format("Owner Name: {0}", m_Owner));
+            details.AppendLine(string.Format("Phone: {0}", m_Phone));
+            details.Append(string.Format("Vehicle Status: {0}", m_Status.ToString()));
+
+            return details.ToString();
         }
     }
 }

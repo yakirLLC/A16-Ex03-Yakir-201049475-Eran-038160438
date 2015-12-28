@@ -9,8 +9,8 @@ namespace Ex03.GarageLogic
         private readonly float r_MaxCarringWeight;
         private bool m_CarriesDangerousMaterials;
 
-        protected Track(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels, float i_MaxCarringWeight, bool i_CarriesDangerousMaterials)
-            : base(i_ModelName, i_Id, i_PercentageEnergyLeft, i_Wheels)
+        protected Track(string i_ModelName, string i_Id, List<Wheel> i_Wheels, float i_MaxCarringWeight, bool i_CarriesDangerousMaterials)
+            : base(i_ModelName, i_Id, i_Wheels)
         {
             r_MaxCarringWeight = i_MaxCarringWeight;
             m_CarriesDangerousMaterials = i_CarriesDangerousMaterials;
@@ -24,10 +24,9 @@ namespace Ex03.GarageLogic
         {
             StringBuilder details = new StringBuilder();
 
-            details.Append(base.ToString());
-            details.Append(string.Format(@"Maximum Carring Weight: {0}
-                                         Is Carring Dangerous Materials: {1}
-                                         ", r_MaxCarringWeight, m_CarriesDangerousMaterials));
+            details.AppendLine(base.ToString());
+            details.AppendLine(string.Format("Maximum Carring Weight: {0}", r_MaxCarringWeight));
+            details.Append(string.Format("Is Carring Dangerous Materials: {0}", m_CarriesDangerousMaterials.ToString()));
 
             return details.ToString();
         }

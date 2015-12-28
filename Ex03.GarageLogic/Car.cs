@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
 
         public enum eColor
         {
-            Red,
+            Red = 1,
             Blue,
             Black,
             White
@@ -19,25 +19,16 @@ namespace Ex03.GarageLogic
 
         public enum eDoors
         {
-            Two = 2,
+            Two = 1,
             Three,
             Four,
             Five
         }
 
-        public int MaxAirPressure
+        protected Car(string i_ModelName, string i_Id, List<Wheel> i_Wheels, eDoors i_NumOfDoors, eColor i_Color)
+            : base(i_ModelName, i_Id, i_Wheels)
         {
-            get
-            {
-                return k_MaxAirPressure;
-            }
-        }
-
-
-        protected Car(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels, eDoors i_NumOfDoors, eColor i_Color)
-            : base(i_ModelName, i_Id, i_PercentageEnergyLeft, i_Wheels)
-        {
-            i_Wheels = new List<Wheel>(4);
+            this.Wheels = i_Wheels;
             foreach (Wheel wheel in i_Wheels)
             {
                 wheel.MaxAirPressure = 29;
@@ -51,10 +42,9 @@ namespace Ex03.GarageLogic
         {
             StringBuilder details = new StringBuilder();
 
-            details.Append(base.ToString());
-            details.Append(string.Format(@"Amount of doors: {0}
-                                         Color: {1}
-                                         ", (eDoors)r_NumOfDoors, (eColor)m_Color));
+            details.AppendLine(base.ToString());
+            details.AppendLine(string.Format("Amount of doors: {0}", ((eDoors)r_NumOfDoors).ToString()));
+            details.Append(string.Format("Color: {0}", ((eColor)m_Color).ToString()));
 
             return details.ToString();
         }

@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
         private readonly string r_Id;
         private float m_PercentageEnergyLeft;
         private List<Wheel> m_Wheels;
-        private abstract Engine m_Engine;
+        private Engine m_Engine;
 
         public enum eNumOfWheels
         {
@@ -19,19 +19,12 @@ namespace Ex03.GarageLogic
             Track = 12
         }
 
-        protected Vehicle(string i_ModelName, string i_Id, float i_PercentageEnergyLeft, List<Wheel> i_Wheels)
+        protected Vehicle(string i_ModelName, string i_Id, List<Wheel> i_Wheels)
         {
             r_ModelName = i_ModelName;
             r_Id = i_Id;
             m_Wheels = i_Wheels;
-            if (i_PercentageEnergyLeft <= 100)
-            {
-                m_PercentageEnergyLeft = i_PercentageEnergyLeft;
-            }
-            else
-            {
-                throw new ValueOutOfRangeException(new Exception(), 100f, 1f);
-            }
+            m_PercentageEnergyLeft = 100;
         }
 
         public List<Wheel> Wheels
@@ -68,6 +61,19 @@ namespace Ex03.GarageLogic
             get
             {
                 return r_Id;
+            }
+        }
+
+        public float PercentageEnergyLeft
+        {
+            get
+            {
+                return m_PercentageEnergyLeft;
+            }
+
+            set
+            {
+                m_PercentageEnergyLeft = value;
             }
         }
 
@@ -113,23 +119,19 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             int i = 1;
-            string details;
-            StringBuilder wheelsDetails = new StringBuilder();
+            StringBuilder wheelsDetails = new StringBuilder(), details = new StringBuilder();
 
             foreach (Wheel wheel in m_Wheels)
             {
                 wheelsDetails.Append(string.Format("Wheel #{0}:\n\tManufacturer: {1}\n\tMaximum Air Pressure: {2}\n\tCurrent Air Pressure: {3}\n", i++, wheel.Manufacturer, wheel.MaxAirPressure, wheel.CurrentAirPressure));
             }
 
-            details = string.Format(@"ID: {0}
-                                    Model Name: {1}
-                                    Energy left: {2}
-                                    {3}
-                                    Maximum Energy: {4}
-                                    % Energy Left: {5}%
-                                    ", r_Id, r_ModelName, m_PercentageEnergyLeft, wheelsDetails, m_Engine.MaxEnergy, m_PercentageEnergyLeft);
+            details.AppendLine(string.Format("ID: {0}", r_Id));
+            details.AppendLine(string.Format("Model Name: {0}", r_ModelName));
+            details.AppendLine(string.Format("Percentae Energy left: {0}", m_PercentageEnergyLeft));
+            details.Append(string.Format("{0}", wheelsDetails.ToString()));
 
-            return details;
+            return details.ToString();
         }
     }
 }

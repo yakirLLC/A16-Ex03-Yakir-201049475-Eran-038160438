@@ -1,0 +1,8 @@
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.ConsoleUI\obj\Debug\Ex03.ConsoleUI.csprojResolveAssemblyReference.cache
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.ConsoleUI\bin\Debug\Ex03.ConsoleUI.exe
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.ConsoleUI\bin\Debug\Ex03.ConsoleUI.pdb
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.ConsoleUI\bin\Debug\Ex03.GarageLogic.dll
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.ConsoleUI\bin\Debug\Ex03.GarageLogic.pdb
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.ConsoleUI\obj\Debug\Ex03.ConsoleUI.exe
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.ConsoleUI\obj\Debug\Ex03.ConsoleUI.pdb
+E:\yakir\Studies\C#\A16 Ex03 Yakir 201049475 Eran 038160438\Ex03.ConsoleUI\bin\Debug\Ex02.ConsoleUtils.dll

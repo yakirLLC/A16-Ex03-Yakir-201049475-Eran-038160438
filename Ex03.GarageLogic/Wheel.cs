@@ -17,6 +17,20 @@ namespace Ex03.GarageLogic
             Track = 34
         }
 
+        public Wheel(string i_Manufacturer, float i_MaxAirPressure, float i_CurrentAirPressure)
+        {
+            if (i_CurrentAirPressure <= i_MaxAirPressure)
+            {
+                r_Manufacturer = i_Manufacturer;
+                m_MaxAirPressure = i_MaxAirPressure;
+                m_CurrentAirPressure = i_CurrentAirPressure;
+            }
+            else
+            {
+                throw new ValueOutOfRangeException(new Exception, i_MaxAirPressure, 0.1f);
+            }
+        }
+
         public string Manufacturer
         {
             get
@@ -49,13 +63,6 @@ namespace Ex03.GarageLogic
             {
                 m_CurrentAirPressure = value;
             }
-        }
-
-        public Wheel(string i_Manufacturer, float i_MaxAirPressure, float i_CurrentAirPressure)
-        {
-            r_Manufacturer = i_Manufacturer;
-            m_MaxAirPressure = i_MaxAirPressure;
-            m_CurrentAirPressure = i_CurrentAirPressure;
         }
 
         public void Inflate(float i_AirToInflate)
